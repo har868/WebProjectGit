@@ -1,0 +1,84 @@
+ {% extends 'LeaderBoard/bluePrint.html' %} {% block nav_active %} active {% endblock %} {% block body %}
+<style>
+    strong {
+        color: dodgerblue;
+    }
+</style>
+
+<div class="albums-container container-fluid">
+
+    <div class="col-sm-12 col-sm-offset-0">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <div class="col-sm-2 col-md-2">
+                    <img src="https://i.pinimg.com/originals/a7/dd/68/a7dd6848ccf86b984d24ea682912885d.png" alt="thumbnail" class="img-responsive" />
+                </div>
+                {% if YourName %}
+                <div class="col-sm-4 text-left">
+                    <div class="panel-body">
+                        <h3><strong>Your Username:</strong> {{ YourName }}</h3>
+                        <h3><strong>Your Screen Name:</strong> {{ YourScreenName }}</h3>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="panel-body">
+                        <h3> <strong> Followers:</strong> {{ YourFollowers }}</h3>
+                        <h3><strong>Following:</strong> {{ YourFollowing }}</h3>
+                    </div>
+                </div>
+                {% else%}
+                <div class="col-sm-8 text-center">
+                    <div class="panel-body">
+                        <h2>Are you the most popular version of your twitter username?</h2>
+                        <a href="{% url 'twitPopularity:AddUser' %}" class="btn btn-success" role="button">Find Out</a>
+                    </div>
+                </div>
+                {% endif %}
+                <div class="col-sm-2 text-center">
+                    <div class="panel panel-success">
+                        <div class="panel-heading" style="font-size: 25px; font-weight: bold">Rank</div>
+                        <div class="panel-body">
+                            <h1>{{ rankCounter }} / {{ total }}</h1>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    {% if YourScreenName %}
+    <div class="row">
+        <div class="col-sm-8 col-sm-offset-2">
+            <div class="panel panel-primary">
+                <div class="panel-heading" style="font-size: 35px;font-weight: bold;text-align: center">Most Popular {{ YourName }}</div>
+                <div class="panel-body">
+
+                    <div class="panel panel-default">
+                        <div class="panel-body">
+                            <div class="col-sm-6 col-md-4">
+                                {% if Popimage %}
+                                <img src="{{ Popimage}}" alt="thumbnail" class="img-responsive" height="400px" width="400px" /> {% else %}
+                                <img src="https://i.stack.imgur.com/l60Hf.png" alt="thumbnail" class="img-responsive" height="400px" width="400px" /> {% endif %}
+                            </div>
+
+                            <div class="col-sm-6 text-left">
+                                <h3><strong>Username:</strong> {{ Popusername }}</h3>
+                                <h3><strong>Screen Name:</strong> {{ PopscreenName }}</h3>
+                                <h3><strong>Followers: </strong>{{ Popfollowers }}</h3>
+                                <h3><strong>Following: </strong>{{ Popfollowing }}</h3>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+
+</div>
+{% endblock %}
